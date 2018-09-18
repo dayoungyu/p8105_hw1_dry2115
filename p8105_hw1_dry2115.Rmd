@@ -13,8 +13,11 @@ library(tidyverse)
 
 
 ```{r prob_1}
+set.seed(2115)
 
-
+df_uniform = tibble(
+    uniform_sample = runif(10, min = 0, max = 5)
+)
 
 ```
 
