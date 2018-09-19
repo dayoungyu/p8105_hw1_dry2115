@@ -17,7 +17,11 @@ set.seed(2115)
 
 df_uniform = tibble(
     uniform_sample = runif(10, min = 0, max = 5),
-    greater_than_2 = uniform_sample > 2
+    greater_than_2 = (uniform_sample > 2),
+    char_vec = c("a","b","c","d","e","f","g","h","i","j"),
+    factor_vec = factor(c(0,1,1,0,0,1,0,1,1,1), 
+          levels = c(0, 1), 
+          label = c("fruit", "vegetable"))
 )
 
 df_uniform
