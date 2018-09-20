@@ -78,7 +78,7 @@ The character variables were assigned into factors from 1-10, then converted int
 
 ## Problem 2
 
-A data frame was created containing two normal random samples of size n=  1000.
+A data frame was created containing two normal random samples of size n = 1000. A logical vector, positive_sum_, was created to indicate if _x_ + _y_ < 0. The logical vector was then coerced into numeric and factor vectors.
 ```{r prob2}
 
 df_normal = tibble(
@@ -112,21 +112,29 @@ Descriptive statistics were calculated for the random samples _x_ and _y_:
   median_y = median(df_normal$y)
 
 ```
-
+The vectors _x_ and _y_ are random samples taken from a normal distribution.
 The random sample _x_ has sample size n = `r n_x`, mean = `r mean_x`, and median = `r median_x`.
 The random sample _y_ has sample size n = `r n_y`, mean = `r mean_y`, and median = `r median_y`.
 The proportion of cases where _x_ + _y_ > 0 is `r prop_true`.
 
 
-Scatterplots of _x_ and _y_:
+# Scatterplots of _x_ and _y_:
+
 ```{r}
 ggplot(df_normal, aes(x = x, y = y, color = positive_sum)) + geom_point()
+ggsave("scatterplot_logic.pdf", height = 4, width = 6)
+```
+The scatterplot above is colored by the logical vector, positive_sum. This vector is TRUE for x + y > 0 and FALSE otherwise. Thus, there are only two distinct colors.
 
+```{r}
 ggplot(df_normal, aes(x = x, y = y, color = num_coerce)) + geom_point()
+```
+The scatterplot above is colored by the numeric vector, num_coerce. This vector is the logical vector that has been coerced into a numerical vector. Since the vector is numeric, the color scale shows a gradient of colors for values between 0-1. However, since our data only contain integer values 0 and 1, there are only two distinct colors in the plot.
 
+```{r}
 ggplot(df_normal, aes(x = x, y = y, color = factor_coerce)) + geom_point()
 ```
-
+The scatterplot above is colored by the factor vector that has been coerced from the logical vector. Similar to the logical vector, the factor vector contains two distinct categorical values. Thus, the color scale and plot display only two distinct colors.
 
 
 
