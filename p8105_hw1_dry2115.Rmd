@@ -54,9 +54,9 @@ Means were obtained for the uniform sample variable and logic variable because t
 The logic, character, and factor variables were converted to numeric vectors:
 ```{r prob1_3, results = "hide", warning = FALSE}
 
-as.numeric(df_uniform$greater_than_2)
-as.numeric(df_uniform$char_vec)
-as.numeric(df_uniform$factor_vec)
+  as.numeric(df_uniform$greater_than_2)
+  as.numeric(df_uniform$char_vec)
+  as.numeric(df_uniform$factor_vec)
 
 ```
 Results: The logic vector was converted to corresponding numeric values of 0 and 1 while the factor vector was converted to values of 1 and 2. The character vector could not be converted to numeric.
@@ -64,13 +64,13 @@ Results: The logic vector was converted to corresponding numeric values of 0 and
 Character variable converted to factor to numeric, and factor variable converted to charater to numeric:
 ```{r prob1_4, warning = FALSE}
 
-char_fact = as.factor(df_uniform$char_vec)
-char_fact_num = as.numeric(char_fact)
-char_fact_num
-
-fact_char = as.character(df_uniform$factor_vec)
-fact_char_num = as.numeric(fact_char)
-fact_char_num
+  char_fact = as.factor(df_uniform$char_vec)
+  char_fact_num = as.numeric(char_fact)
+  char_fact_num
+  
+  fact_char = as.character(df_uniform$factor_vec)
+  fact_char_num = as.numeric(fact_char)
+  fact_char_num
 
 ```
 The character variables were assigned into factors from 1-10, then converted into corresponding numeric values. The factor variables were converted to corresponding character strings of "fruit" or "vegetable", but the resulting character values could not be converted to numeric values.
@@ -94,3 +94,27 @@ df_normal = tibble(
 df_normal
 
 ```
+
+
+
+Descriptive statistics were calculated for the random samples x and y:
+```{r prob2_descr}
+
+  n_x = length(df_normal$x)
+  mean_x = mean(df_normal$x)
+  median_x = median(df_normal$x)
+  total_true = length(df_normal$positive_sum[df_normal$positive_sum == TRUE])
+  prop_true = (total_true / n_x)
+  
+  
+  n_y = length(df_normal$y)
+  mean_y = mean(df_normal$y)
+  median_y = median(df_normal$y)
+
+```
+
+The random sample x has sample size n = `r n_x`, mean = `r mean_x`, and median = `r median_x`.
+The random sample y has sample size n = `r n_y`, mean = `r mean_y`, and median = `r median_y`.
+The proportion of cases where x + y > 0 is `r prop_true`.
+
+
