@@ -131,17 +131,23 @@ $(document).ready(function () {
 
 <div id="problem-1" class="section level2">
 <h2>Problem 1</h2>
+<p>A data frame containing four variables is created:</p>
 <pre class="r"><code>set.seed(2115)
 
 df_uniform = tibble(
+  
     uniform_sample = runif(10, min = 0, max = 5),
+    
     greater_than_2 = (uniform_sample &gt; 2),
+    
     char_vec = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;,&quot;i&quot;,&quot;j&quot;),
+    
     factor_vec = factor(c(0,1,1,0,0,1,0,1,1,1), 
-          levels = c(0, 1), 
-          label = c(&quot;fruit&quot;, &quot;vegetable&quot;))
+                 levels = c(0, 1), 
+                 label = c(&quot;fruit&quot;, &quot;vegetable&quot;))
 )
 
+## print data frame
 df_uniform</code></pre>
 <pre><code>## # A tibble: 10 x 4
 ##    uniform_sample greater_than_2 char_vec factor_vec
@@ -156,6 +162,26 @@ df_uniform</code></pre>
 ##  8          2.33  TRUE           h        vegetable 
 ##  9          1.53  FALSE          i        vegetable 
 ## 10          4.12  TRUE           j        vegetable</code></pre>
+<p>The mean of each variable is calculated:</p>
+<pre class="r"><code>df_means = tibble(
+  
+      mean_sample = mean(df_uniform$uniform_sample),
+      mean_logic = mean(df_uniform$greater_than_2),
+      mean_char = mean(df_uniform$char_vec),
+      mean_factor = mean(df_uniform$factor_vec)
+)</code></pre>
+<pre><code>## Warning in mean.default(df_uniform$char_vec): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## Warning in mean.default(df_uniform$factor_vec): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre class="r"><code>## print means
+
+df_means</code></pre>
+<pre><code>## # A tibble: 1 x 4
+##   mean_sample mean_logic mean_char mean_factor
+##         &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1        2.79        0.7        NA          NA</code></pre>
+<p>Means were obtained for the uniform sample variable and logic variable because they consisted of valid numeric values. The mean function yielded “NA” for the character variable and factor variable because means cannot be calculated for character strings or categorical data.</p>
 </div>
 <div id="problem-2" class="section level2">
 <h2>Problem 2</h2>
