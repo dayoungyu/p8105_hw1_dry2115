@@ -61,7 +61,7 @@ The logic, character, and factor variables were converted to numeric vectors:
 ```
 Results: The logic vector was converted to corresponding numeric values of 0 and 1 while the factor vector was converted to values of 1 and 2. The character vector could not be converted to numeric.
 
-Character variable converted to factor to numeric, and factor variable converted to charater to numeric:
+The character variable was converted to factor to numeric, and the factor variable was converted to charater to numeric:
 ```{r prob1_4, warning = FALSE}
 
   char_fact = as.factor(df_uniform$char_vec)
@@ -78,7 +78,7 @@ The character variables were assigned into factors from 1-10, then converted int
 
 ## Problem 2
 
-A data frame was created containing two normal random samples of size n=1000.
+A data frame was created containing two normal random samples of size n=  1000.
 ```{r prob2}
 
 df_normal = tibble(
@@ -97,7 +97,7 @@ df_normal
 
 
 
-Descriptive statistics were calculated for the random samples x and y:
+Descriptive statistics were calculated for the random samples _x_ and _y_:
 ```{r prob2_descr}
 
   n_x = length(df_normal$x)
@@ -113,8 +113,20 @@ Descriptive statistics were calculated for the random samples x and y:
 
 ```
 
-The random sample x has sample size n = `r n_x`, mean = `r mean_x`, and median = `r median_x`.
-The random sample y has sample size n = `r n_y`, mean = `r mean_y`, and median = `r median_y`.
-The proportion of cases where x + y > 0 is `r prop_true`.
+The random sample _x_ has sample size n = `r n_x`, mean = `r mean_x`, and median = `r median_x`.
+The random sample _y_ has sample size n = `r n_y`, mean = `r mean_y`, and median = `r median_y`.
+The proportion of cases where _x_ + _y_ > 0 is `r prop_true`.
+
+
+Scatterplots of _x_ and _y_:
+```{r}
+ggplot(df_normal, aes(x = x, y = y, color = positive_sum)) + geom_point()
+
+ggplot(df_normal, aes(x = x, y = y, color = num_coerce)) + geom_point()
+
+ggplot(df_normal, aes(x = x, y = y, color = factor_coerce)) + geom_point()
+```
+
+
 
 
