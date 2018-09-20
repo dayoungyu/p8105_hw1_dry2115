@@ -124,16 +124,19 @@ The proportion of cases where _x_ + _y_ > 0 is `r prop_true`.
 ggplot(df_normal, aes(x = x, y = y, color = positive_sum)) + geom_point()
 ggsave("scatterplot_logic.pdf", height = 4, width = 6)
 ```
+
 The scatterplot above is colored by the logical vector, positive_sum. This vector is TRUE for x + y > 0 and FALSE otherwise. Thus, there are only two distinct colors.
 
 ```{r}
 ggplot(df_normal, aes(x = x, y = y, color = num_coerce)) + geom_point()
 ```
+
 The scatterplot above is colored by the numeric vector, num_coerce. This vector is the logical vector that has been coerced into a numerical vector. Since the vector is numeric, the color scale shows a gradient of colors for values between 0-1. However, since our data only contain integer values 0 and 1, there are only two distinct colors in the plot.
 
 ```{r}
 ggplot(df_normal, aes(x = x, y = y, color = factor_coerce)) + geom_point()
 ```
+
 The scatterplot above is colored by the factor vector that has been coerced from the logical vector. Similar to the logical vector, the factor vector contains two distinct categorical values. Thus, the color scale and plot display only two distinct colors.
 
 
