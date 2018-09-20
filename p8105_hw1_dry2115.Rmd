@@ -75,10 +75,22 @@ fact_char_num
 ```
 The character variables were assigned into factors from 1-10, then converted into corresponding numeric values. The factor variables were converted to corresponding character strings of "fruit" or "vegetable", but the resulting character values could not be converted to numeric values.
 
+
 ## Problem 2
 
+A data frame was created containing two normal random samples of size n=1000.
+```{r prob2}
 
-```{r prob_2}
+df_normal = tibble(
+  
+    x = rnorm(1000),
+    y = rnorm(1000),
+  
+    positive_sum = (x + y > 0),
+    num_coerce = as.numeric(positive_sum),
+    factor_coerce = as.factor(positive_sum)
+)
 
+df_normal
 
 ```
