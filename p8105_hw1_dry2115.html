@@ -131,7 +131,7 @@ $(document).ready(function () {
 
 <div id="problem-1" class="section level2">
 <h2>Problem 1</h2>
-<p>A data frame containing four variables is created:</p>
+<p>A data frame containing four variables (random sample, logic vector, character vector, and factor vector) was created:</p>
 <pre class="r"><code>set.seed(2115)
 
 df_uniform = tibble(
@@ -147,7 +147,6 @@ df_uniform = tibble(
                  label = c(&quot;fruit&quot;, &quot;vegetable&quot;))
 )
 
-## print data frame
 df_uniform</code></pre>
 <pre><code>## # A tibble: 10 x 4
 ##    uniform_sample greater_than_2 char_vec factor_vec
@@ -162,26 +161,36 @@ df_uniform</code></pre>
 ##  8          2.33  TRUE           h        vegetable 
 ##  9          1.53  FALSE          i        vegetable 
 ## 10          4.12  TRUE           j        vegetable</code></pre>
-<p>The mean of each variable is calculated:</p>
+<p>The mean of each variable was calculated:</p>
 <pre class="r"><code>df_means = tibble(
   
-      mean_sample = mean(df_uniform$uniform_sample),
-      mean_logic = mean(df_uniform$greater_than_2),
-      mean_char = mean(df_uniform$char_vec),
-      mean_factor = mean(df_uniform$factor_vec)
-)</code></pre>
-<pre><code>## Warning in mean.default(df_uniform$char_vec): argument is not numeric or
-## logical: returning NA</code></pre>
-<pre><code>## Warning in mean.default(df_uniform$factor_vec): argument is not numeric or
-## logical: returning NA</code></pre>
-<pre class="r"><code>## print means
+    mean_sample = mean(df_uniform$uniform_sample),
+    mean_logic = mean(df_uniform$greater_than_2),
+    mean_char = mean(df_uniform$char_vec),
+    mean_factor = mean(df_uniform$factor_vec)
+)
 
 df_means</code></pre>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_sample mean_logic mean_char mean_factor
 ##         &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
 ## 1        2.79        0.7        NA          NA</code></pre>
-<p>Means were obtained for the uniform sample variable and logic variable because they consisted of valid numeric values. The mean function yielded “NA” for the character variable and factor variable because means cannot be calculated for character strings or categorical data.</p>
+<p>Means were obtained for the uniform sample variable and logic variable because they consisted of valid numeric values. The logic variable is given values of 0 or 1. The mean function yielded “NA” for the character variable and factor variable because means cannot be calculated for character strings or categorical data.</p>
+<p>The logic, character, and factor variables were converted to numeric vectors:</p>
+<pre class="r"><code>as.numeric(df_uniform$greater_than_2)
+as.numeric(df_uniform$char_vec)
+as.numeric(df_uniform$factor_vec)</code></pre>
+<p>Results: The logic vector was converted to corresponding numeric values of 0 and 1 while the factor vector was converted to values of 1 and 2. The character vector could not be converted to numeric.</p>
+<p>Character variable converted to factor to numeric, and factor variable converted to charater to numeric:</p>
+<pre class="r"><code>char_fact = as.factor(df_uniform$char_vec)
+char_fact_num = as.numeric(char_fact)
+char_fact_num</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>fact_char = as.character(df_uniform$factor_vec)
+fact_char_num = as.numeric(fact_char)
+fact_char_num</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
+<p>The character variables were assigned into factors from 1-10, then converted into corresponding numeric values. The factor variables were converted to corresponding character strings of “fruit” or “vegetable”, but the resulting character values could not be converted to numeric values.</p>
 </div>
 <div id="problem-2" class="section level2">
 <h2>Problem 2</h2>
